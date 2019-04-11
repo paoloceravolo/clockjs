@@ -15,7 +15,7 @@ var meridiem = "AM";
         meridiem = "PM";
     }
     
-    //
+    // The conditional ternary operator is the only JavaScript operator that takes three operands. This operator is frequently used as a shortcut for the if statement.
     h = (h < 10) ? "0" + h : h;
     m = (m < 10) ? "0" + m : m;
     s = (s < 10) ? "0" + s : s;

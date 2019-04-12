@@ -21,9 +21,14 @@ var meridien = "AM";
     s = (s < 10) ? "0" + s : s;
     
     var currTime = h + ":" + m + ":" + s + " " + meridien;
-    //console.log(time);
+    //console.log(time); 
+
+    //var xss = "<img src='foo.img' onerror='alert(document.cookie)'>"; 
+
     document.getElementById("myclock").innerText = currTime ;
+    //document.getElementById("myclock").innerHTML = xss;
     //document.getElementById("myclock").textContent = time;
+
     
     setTimeout(time, 1000);
     

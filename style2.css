@@ -3,11 +3,11 @@ body {font-family: Futura}
 /* Impaginazione */
 
 header {
-	background-color: pink;
+	background-color: #6e7854;
 }
 
 nav {
-	background-color: green;
+	background-color: #008880;
 	width: 15%;
 	display: inline-block;
 	vertical-align: top;
@@ -38,14 +38,14 @@ button#dark {background-color: rgb(00,00,33,90%);color:white;}
 }
 
 #content {
-	background-color: orange;
+	background-color: #84b1aa;
 	width: 80%;
 	display: inline-flex;
 	position: relative;
 }
 
 footer {
-	background-color: grey;
+	background-color: #ffd700;
 	display: block;
 	position: sticky;
 	bottom: 0px;

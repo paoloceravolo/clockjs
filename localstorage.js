@@ -29,7 +29,7 @@ function displayTheme(){
 
 // ATTENZIONE ANDREBBE RESO UN CICLO 
 if(localStorage.getItem('theme')){
-linkTag[1].href =  localStorage.getItem('theme');
+linkTag[0].href =  localStorage.getItem('theme');
 };
 
 
@@ -59,9 +59,11 @@ function readFile(event) {
 console.log(event.target.result);
 var myfile =  event.target.result;
 localStorage.setItem('myfile', myfile);
+//console.log(localStorage.getItem('myfile'));
 
 //This splits the string into an array of strings with the first item (index 0) containing data:image/png;base64 and the second item (index 1) containing the base64 encoded data
 var base64result = localStorage.getItem('myfile').split(',')[1];
+console.log(base64result);
 //The WindowOrWorkerGlobalScope.btoa() method creates a base-64 encoded ASCII string from a binary string (i.e., a String object in which each character in the string is treated as a byte of binary data).
 document.querySelector("#myscript").innerText = atob(base64result);
 console.log(atob(base64result));
@@ -71,4 +73,21 @@ console.log(atob(base64result));
 //the event has a target property, the FileReader with a property 'result',
 //which is where the value we read is located
 }
+
+
+var worker = new Worker("webworker.js");
+
+worker.addEventListener("message", function(e){
+    console.log(e.data);
+});
+
+worker.postMessage(true);
+
+
+
+
+
+
+
+
 

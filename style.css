@@ -40,7 +40,7 @@ button#dark {background-color: rgb(00,00,33,90%);color:white;}
 #content {
 	background-color: orange;
 	width: 80%;
-	display: inline-flex;
+	display: inline-block;
 	position: relative;
 }
 

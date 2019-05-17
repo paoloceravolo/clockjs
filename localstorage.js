@@ -75,13 +75,13 @@ console.log(atob(base64result));
 }
 
 
-var worker = new Worker("webworker.js");
+// var worker = new Worker("webworker.js");
 
-worker.addEventListener("message", function(e){
-    console.log(e.data);
-});
+// worker.addEventListener("message", function(e){
+//     console.log(e.data);
+// });
 
-worker.postMessage(true);
+// worker.postMessage(true);
 
 
 

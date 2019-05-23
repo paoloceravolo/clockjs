@@ -1,6 +1,8 @@
 // Disable Same origin policy
 //open -n -a /Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --args --user-data-dir="/tmp/chrome_dev_sess_1" --disable-web-security
 
+var tl = 0;
+
 // Script parameters usin RORO pattern: Receive Objects Return Objects 
 const templateObj = {
   target: '#content',
@@ -94,14 +96,23 @@ function drawMap(response){
       }
     };
     resp.forEach(extract);
-    //console.log(locations);
-    initMap(locations);
+    console.log(locations);
+   if(locations[0]){tlMap(locations)};
 }
+
+// veryfy data are available and gmap is sloaded: it is called by drawMap and by the Google library
+function tlMap(locations){
+  console.log(tl);
+  tl = tl+1;
+  console.log(tl);
+  if(tl >= 2){initMap(locations)}
+  return
+  //console.log(locations);
+} 
 
  function initMap(locations) {
 
-    debugger
-
+//console.log(locations);
 
         var map = new google.maps.Map(document.getElementById('map'), {
           zoom: 8,
@@ -115,7 +126,7 @@ function drawMap(response){
         // Note: The code uses the JavaScript Array.prototype.map() method to
         // create an array of markers based on a given "locations" array.
         // The map() method here has nothing to do with the Google Maps API.
-        console.log(locations);
+        //console.log(locations);
         var markers = locations.map(function(location, i) {
           return new google.maps.Marker({
             position: location,

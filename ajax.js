@@ -24,10 +24,10 @@ const ajaxcallObj = {
 // this does not match with the asynchronous pattern 
 //callAjax(template());
 // option 3 call the function and its callback. Callabck will execute when the asynchronous event is complete
-callAjax(ajaxcallObj, templateObj, template);
+callAjax(ajaxcallObj, templateObj, template, drawMap);
 
 
-function callAjax(call, temp, callback){
+function callAjax(call, temp, callback, callback2){
 //instanzo l'oggetto XMLHttpRequest
   var xhr = new XMLHttpRequest();
   //debugger;
@@ -42,6 +42,8 @@ xhr.onreadystatechange = function(){
       //return xhr.response;
       // option 3 call the function and its callback. Callabck will execute when the asynchronous event is complete
       callback(xhr.response, temp);
+      callback2(xhr.response);
+
     }
   }
 }
@@ -76,3 +78,52 @@ function template(response, temp){
 
       resp.forEach(appendResponse);
 }
+
+function drawMap(response){
+
+    let resp = JSON.parse(response);
+    let locations = [];
+
+    function extract(item){
+      if(item.location){
+        let coor = {};
+        coor.lat = item.location.coordinates[1];
+        coor.lng = item.location.coordinates[0];
+        //console.log(coor);
+        locations.push(coor);
+      }
+    };
+    resp.forEach(extract);
+    //console.log(locations);
+    initMap(locations);
+}
+
+ function initMap(locations) {
+
+    debugger
+
+
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 8,
+          center: {lat: 45, lng: 10}
+        });
+
+        // Create an array of alphabetical characters used to label the markers.
+        var labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+
+        // Add some markers to the map.
+        // Note: The code uses the JavaScript Array.prototype.map() method to
+        // create an array of markers based on a given "locations" array.
+        // The map() method here has nothing to do with the Google Maps API.
+        console.log(locations);
+        var markers = locations.map(function(location, i) {
+          return new google.maps.Marker({
+            position: location,
+            label: labels[i % labels.length]
+          });
+        });
+
+        // Add a marker clusterer to manage the markers.
+        var markerCluster = new MarkerClusterer(map, markers,
+            {imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'});
+      }
